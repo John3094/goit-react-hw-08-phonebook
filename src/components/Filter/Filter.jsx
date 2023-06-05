@@ -19,4 +19,5 @@ export class Filter extends Component {
 
 Filter.propTypes = {
   value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };

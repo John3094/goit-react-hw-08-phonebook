@@ -22,5 +22,12 @@ export class ContactList extends Component {
 }
 
 ContactList.propTypes = {
-  filterList: PropTypes.array.isRequired,
+  filterList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+  onDelete: PropTypes.func.isRequired,
 };
