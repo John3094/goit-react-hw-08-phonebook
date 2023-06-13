@@ -25,10 +25,12 @@ export const App = () => {
   const addContact = (name, number) => {
     if (
       contacts.find(
-        contact => contact.name.toLowerCase() === name.toLowerCase()
+        contact =>
+          contact.name.toLowerCase() === name.toLowerCase() ||
+          contact.number === number
       )
     ) {
-      alert(`${name} is already in contacts.`);
+      alert(`${name} or ${number} is already in contacts.`);
       return;
     }
 
