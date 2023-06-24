@@ -1,7 +1,7 @@
 import { Item, Button } from './ContactListStyled';
 import { useDispatch, useSelector } from 'react-redux';
 import { filteredContacts } from 'redux/contacts/selectors';
-import { deleteContact } from 'redux/contacts/contactsSlice';
+import { deleteContact } from 'redux/contacts/operations';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ export const ContactList = () => {
     <ul>
       {filterList.map(filterItem => (
         <Item key={filterItem.id}>
-          {filterItem.name}: {filterItem.number}
+          {filterItem.name}: {filterItem.phone}
           <Button onClick={() => dispatch(deleteContact(filterItem.id))}>
             Delete
           </Button>
