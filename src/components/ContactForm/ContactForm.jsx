@@ -10,6 +10,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/contacts/selectors';
 import { addContact } from '../../redux/contacts/operations';
+import toast, { Toaster } from 'react-hot-toast';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -41,7 +42,7 @@ export const ContactForm = () => {
           contact.number === number
       )
     ) {
-      alert(`${name} or ${number} is already in contacts.`);
+      toast(`Name: ${name} or number: ${number} is already in contacts.`);
       return;
     }
 
@@ -84,6 +85,14 @@ export const ContactForm = () => {
       <Button type="submit">
         <ButtonText>Add contact</ButtonText>
       </Button>
+      <Toaster
+        toastOptions={{
+          style: {
+            background: '#ff8585',
+            color: '#fff',
+          },
+        }}
+      />
     </Form>
   );
 };
