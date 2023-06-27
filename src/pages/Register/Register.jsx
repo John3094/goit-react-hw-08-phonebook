@@ -15,7 +15,7 @@ import { ContainerRegister } from './Register.styled';
 
 const theme = createTheme();
 
-const SignUp = () => {
+const Register = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = event => {
@@ -105,4 +105,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Register;

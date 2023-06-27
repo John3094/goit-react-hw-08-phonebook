@@ -1,20 +1,21 @@
-import { useDispatch } from 'react-redux';
-import { logIn } from 'redux/auth/operations';
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { ContainerLogin } from './Login.styled';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useDispatch } from 'react-redux';
+import { logIn } from 'redux/auth/operations';
+import { ContainerLogin } from './Login.styled';
 
 const theme = createTheme();
 
-const SignIn = () => {
+const LogIn = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = event => {
@@ -45,42 +46,44 @@ const SignIn = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Sign up
             </Typography>
             <Box
               component="form"
-              onSubmit={handleSubmit}
               noValidate
-              sx={{ mt: 1 }}
+              onSubmit={handleSubmit}
+              sx={{ mt: 3 }}
             >
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                transparency
-                autoFocus
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="new-password"
+                  />
+                </Grid>
+              </Grid>
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Sign Up
               </Button>
             </Box>
           </Box>
@@ -90,4 +93,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default LogIn;

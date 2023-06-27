@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import storage from 'redux-persist/lib/storage';
-// import persistReducer from 'redux-persist/es/persistReducer';
 import { register, logIn, logOut, refreshUser } from './operations';
 
 const authSlice = createSlice({
@@ -8,7 +6,7 @@ const authSlice = createSlice({
 
   initialState: {
     user: { name: null, email: null },
-    token: null,
+    token: '',
     isLoggedIn: false,
     isRefreshing: false,
     isLoading: false,

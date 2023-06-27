@@ -1,5 +1,3 @@
-// import { ContactForm } from './ContactForm/ContactForm';
-// import { Filter } from './Filter/Filter';
 import { Routes, Route } from 'react-router-dom';
 import PrivateRoute from 'components/PrivateRoute';
 import PublicRoute from 'components/PublickRoute';
@@ -8,8 +6,8 @@ import { Container } from './AppStyled';
 import { useEffect } from 'react';
 import { lazy } from 'react';
 import { useDispatch } from 'react-redux';
-import { Loader } from './Loader/Loader';
 import { refreshUser } from 'redux/auth/operations';
+import { Triangle } from 'react-loader-spinner';
 
 const AppBar = lazy(() => import('components/AppBar/AppBar'));
 const Home = lazy(() => import('pages/Home/Home'));
@@ -26,7 +24,9 @@ export const App = () => {
 
   return (
     <Container>
-      <Suspense fallback={<Loader />}>
+      <Suspense
+        fallback={<Triangle height="100" width="100" color="#FF99B3" />}
+      >
         <Routes>
           <Route path="/" element={<AppBar />}>
             <Route index element={<Home />} />
