@@ -1,12 +1,19 @@
 import { useState } from 'react';
-import { Form, Label, InputName, Button } from './ContactFormStyled';
+import {
+  Form,
+  Label,
+  InputName,
+  Button,
+  Input,
+  ButtonText,
+} from './ContactFormStyled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/contacts/selectors';
 import { addContact } from '../../redux/contacts/operations';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setPhone] = useState('');
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
@@ -17,7 +24,7 @@ export const ContactForm = () => {
       case 'name':
         setName(value);
         break;
-      case 'phone':
+      case 'number':
         setPhone(value);
         break;
       default:
@@ -31,17 +38,18 @@ export const ContactForm = () => {
       contacts.find(
         contact =>
           contact.name.toLowerCase() === name.toLowerCase() ||
-          contact.phone === phone
+          contact.number === number
       )
     ) {
-      alert(`${name} or ${phone} is already in contacts.`);
+      alert(`${name} or ${number} is already in contacts.`);
       return;
     }
 
     const newContact = {
       name,
-      phone,
+      number,
     };
+
     dispatch(addContact(newContact));
     setName('');
     setPhone('');
@@ -51,7 +59,7 @@ export const ContactForm = () => {
     <Form onSubmit={handleSubmit}>
       <Label>
         <InputName>Name</InputName>
-        <input
+        <Input
           type="text"
           name="name"
           value={name}
@@ -63,17 +71,19 @@ export const ContactForm = () => {
       </Label>
       <Label>
         <InputName>Number</InputName>
-        <input
+        <Input
           type="tel"
-          name="phone"
-          value={phone}
+          name="number"
+          value={number}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           onChange={handleChange}
         />
       </Label>
-      <Button type="submit">Add contact</Button>
+      <Button type="submit">
+        <ButtonText>Add contact</ButtonText>
+      </Button>
     </Form>
   );
 };

@@ -8,6 +8,12 @@ import { selectError, selectIsLoading } from 'redux/contacts/selectors';
 import { getIsLoggedIn } from 'redux/auth/selectors';
 import { fetchContacts } from 'redux/contacts/operations';
 import { Loader } from '../../components/Loader/Loader';
+import {
+  ContainerContacts,
+  Container,
+  TitleBook,
+  TitleList,
+} from './Contacts.styled';
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -20,15 +26,17 @@ const Contacts = () => {
   }, [dispatch, isLogin]);
 
   return (
-    <div>
-      <h1>Phonebook</h1>
-      {isLoading && <Loader />}
-      {error && <p>{error}</p>}
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactList />
-    </div>
+    <ContainerContacts>
+      <Container>
+        <TitleBook>Phonebook</TitleBook>
+        {isLoading && <Loader />}
+        {error && <p>{error}</p>}
+        <ContactForm />
+        <TitleList>Contacts</TitleList>
+        <Filter />
+        <ContactList />
+      </Container>
+    </ContainerContacts>
   );
 };
 
